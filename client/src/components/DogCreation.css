@@ -1,0 +1,6 @@
+.forms {
+    margin: 0 auto; /* Centramos el formulario */
+    width: 300px;   /* Sin ancho no podemos centrar el formulario */
+    padding: 10px;
+    border-radius: 10px
+ }
