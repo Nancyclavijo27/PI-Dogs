@@ -1,5 +1,5 @@
 .home-container{
-    background-color: #cc9d288d;
+    background-color: #f6f3eb8d;
     height: 75vp;
     width: 100%;
     display: flex;
@@ -17,6 +17,6 @@
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 30px;
     grid-row-gap: 30px;
-
+    
 }
 

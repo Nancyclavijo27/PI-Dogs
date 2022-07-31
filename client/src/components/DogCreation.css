@@ -1,6 +1,27 @@
-.forms {
-    margin: 0 auto; /* Centramos el formulario */
-    width: 300px;   /* Sin ancho no podemos centrar el formulario */
-    padding: 10px;
-    border-radius: 10px
+
+.form {
+    width:500px;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
+	background-color:rgb(161, 210, 213);
+  }
+  
+ .info{
+    width:300px;
+	font-weight:bold;
+	display:inline-block;
  }
+
+ .res{
+    width:180px;
+	padding:3px 10px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;
+	margin:8px 0;
+	display:inline-block;
+ }
+
+ 
+ 

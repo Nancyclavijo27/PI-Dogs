@@ -2,7 +2,7 @@
 import React from "react";
 import {Link,  useParams  } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getDetail, getClean} from "../actions/index";
+import {getDetail} from "../actions/index";
 import { useEffect } from "react";
 
 export  default  function Detail(){
@@ -12,12 +12,15 @@ export  default  function Detail(){
     
     useEffect(() => {
       dispatch(getDetail(id));
-      dispatch(getClean());
+      
     }, [dispatch, id]);
 
     return (   
     
-      <div>   
+      <div> 
+        <div>
+        <Link to="/home"><button>Volver</button></Link>
+        </div>
       {myDog.length > 0 ?//pregunto tiene algo 
       <div>
           <h1>Es:{myDog[0].name}</h1>
@@ -33,13 +36,8 @@ export  default  function Detail(){
        </div>:<p>Loading...</p>
      
       }
-       
-   <Link to="/home">
-      <button>Volver</button>
-   </Link> 
-   
-</div>
- )
-  }
+      </div>
+      )
+      }
 
   
