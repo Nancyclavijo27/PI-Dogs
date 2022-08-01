@@ -74,31 +74,31 @@ function handleSortWeight(e) {
 //select para mis filtros
 //option value es una istruccion dependiendo su valor toma una accion - siempre el value debe ser igual al de la api
 return (
-    <div>
- <Link to="/dog">Añadir nueva raza</Link>
+    <div className="home-container">
+ <Link   to="/dog">Añadir nueva raza</Link>
  <h1>Busca y conoce a tu mejor amigo</h1>
- <button onClick={e=>{handleClick(e)}}>
+ <button  className="btn" onClick={e=>{handleClick(e)}}>
     volver a cargar todas las razas de perros
  </button>
  <div>
-        <select onChange={(e) => handleSortWeight(e)} >
+        <select className="selec"  onChange={(e) => handleSortWeight(e)} >
           <option value="All">Todos </option>
           <option value="min">Peso Min</option>
           <option value="max">Peso Max</option>
         </select>
     
-    <select onChange={e=>handleSort(e)}>
+    <select className="selec" onChange={e=>handleSort(e)}>
         <option value= "All">Todos</option>  
         <option value= "asc">De la A-Z</option>
         <option value= "desc">De la Z-A</option>                                   
     </select>
    
-    <select onChange={e=>handleFilterCreate(e)}>
+    <select  className="selec" onChange={e=>handleFilterCreate(e)}>
         <option value= "All">Todos</option>
         <option value= "created">Creados</option>
         <option value= "api">De la api</option>
     </select>
-    <select onChange={(e)=>handleSelect(e)}>
+    <select className="selec" onChange={(e)=>handleSelect(e)}>
          <option  value= "All">Temperamentos</option>
             {temperaments.map((tem)=>(
          <option key={tem.id} value={tem.name}>{tem.name}</option>
