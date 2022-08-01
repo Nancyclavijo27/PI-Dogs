@@ -111,10 +111,13 @@ const router = Router();
     
     router.post("/dogs", async(req, res)=>{// lo que requiere el body
         const { name, heightMax, heightMin, weightMax, weightMin, life_spanMax, life_spanMin, image, temperament } = req.body;
+        let dogName = await getApiInfo().then((d) => d.find((d) => d.name === name)); // se fija si el nombre esta en la api
             // Creo el Dog
     
-            if(!name || !heightMax || !heightMin || !weightMax || !weightMin || !image || !temperament){
+            if(!name || !heightMax || !heightMin || !weightMax || !weightMin  || !temperament){
                 res.status(400).send("Faltan datos"); /// 400 porque faltan datos
+            }else if (dogName){ // si el nombre esta en la api
+                res.status(404).send("El nombre del perro ya existe"); // 404 porque el nombre ya existe
             } else{
                 Dog.create({ 
                     name: name,
@@ -125,7 +128,7 @@ const router = Router();
                     life_spanMax: parseInt(life_spanMax),
                     life_spanMin: parseInt(life_spanMin),
                     createdInDb: true,
-                    image: image || "https://www.dogbreedslist.info/images/breeds/Chihuahua/Chihuahua1.jpg",
+                    image: image || "https://image.freepik.com/vector-gratis/sesion-perro-gracioso-dibujos-animados-aislado-sobre-fondo-blanco_29190-2681.jpg",
                 })
                 .then(async (dog) => {
                     // Guardo el temperamento
