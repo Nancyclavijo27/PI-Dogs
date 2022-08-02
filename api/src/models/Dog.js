@@ -12,20 +12,20 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,//este campo es requerido
+      allowNull: false,
       unique:true,
     },
     heightMin: {
-      type: DataTypes.STRING, // el tipo de dato depende endpoint del api perros
-      allowNull: false,//este campo es requerido
+      type: DataTypes.STRING, 
+      allowNull: false,
     },
     heightMax: {
-      type: DataTypes.STRING, // el tipo de dato depende endpoint del api perros
-      allowNull: false,//este campo es requerido
+      type: DataTypes.STRING, 
+      allowNull: false,
     },
     weightMin: {
       type: DataTypes.STRING,
-      allowNull: false,//este campo es requerido
+      allowNull: false,
     },
     weightMax: {
       type: DataTypes.STRING,
@@ -39,9 +39,9 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false,//este campo es requerido
+      allowNull: false,//
     },
-    createdInDb:{  //creado en bd es mas facial saber que se creo en bd, todo lo que yo cree se crea con esta propiedad
+    createdInDb:{  // todo lo que yo cree se crea con esta propiedad
       type:DataTypes.BOOLEAN,
     
       defaultValue:true

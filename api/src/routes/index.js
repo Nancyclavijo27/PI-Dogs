@@ -67,18 +67,18 @@ const router = Router();
 
 
     const getAllDogs = async () =>{//esta funcion concatena los datos de la api y los de la bd
-        const apiInfo = await getApiInfo(); //trae la info de la api
-        const dbInfo = await getDbInfo() //trae la info de la bd
-        const totalInfo = apiInfo.concat(dbInfo) //concatena la info de la api y la de la bd
+        const apiInfo = await getApiInfo(); 
+        const dbInfo = await getDbInfo() 
+        const totalInfo = apiInfo.concat(dbInfo) 
         return totalInfo
     }
     
     // aqui rutas solicitadas
-    router.get("/dogs", async (req, res) =>{ // ?name="el nombre"
-        const name = req.query.name //se pide por query
+    router.get("/dogs", async (req, res) =>{ 
+        const name = req.query.name 
         const dogsTotales = await getAllDogs()//trae todos los perros
         if(name){ //pregunta si hay un name por query
-            let dogsName = await dogsTotales.filter(ele => ele.name.toLowerCase().includes(name.toLowerCase()))//para no tener problema con las mays y minus
+            let dogsName = await dogsTotales.filter(ele => ele.name.toLowerCase().includes(name.toLowerCase()))
             dogsName.length ?//encontraste el nombre?
             res.status(200).send(dogsName):
             res.status(404).send("No esta disponible");
@@ -90,7 +90,7 @@ const router = Router();
     router.get("/temperament", async(req,res)=>{
         const tempApi = await axios("https://api.thedogapi.com/v1/breeds?");
         const tempDB = tempApi.data
-            .map((t) => t.temperament) //creo muchos arreglos con las palabras
+            .map((t) => t.temperament) //creo muchos arreglos 
             .toString() // las convierto a string
             .split(",") // las separo por comas
             .map((t) => t.trim()) // las quito los espacios
@@ -109,15 +109,15 @@ const router = Router();
         res.json(totalTemp);
     })
     
-    router.post("/dogs", async(req, res)=>{// lo que requiere el body
+    router.post("/dogs", async(req, res)=>{
         const { name, heightMax, heightMin, weightMax, weightMin, life_spanMax, life_spanMin, image, temperament } = req.body;
         let dogName = await getApiInfo().then((d) => d.find((d) => d.name === name)); // se fija si el nombre esta en la api
             // Creo el Dog
     
             if(!name || !heightMax || !heightMin || !weightMax || !weightMin  || !temperament){
-                res.status(400).send("Faltan datos"); /// 400 porque faltan datos
-            }else if (dogName){ // si el nombre esta en la api
-                res.status(404).send("El nombre del perro ya existe"); // 404 porque el nombre ya existe
+                res.status(400).send("Faltan datos"); 
+            }else if (dogName){ 
+                res.status(404).send("El nombre del perro ya existe"); 
             } else{
                 Dog.create({ 
                     name: name,
@@ -148,9 +148,9 @@ const router = Router();
     
     //ruta id
     router.get("/dogs/:id", async(req, res)=>{
-        const id = req.params.id;//requiere parametro id
-        const dogsTotales= await getAllDogs()//llama la funcion total de perros
-        if(id){//si tiene id
+        const id = req.params.id;
+        const dogsTotales= await getAllDogs()
+        if(id){
             let dogId= await dogsTotales.filter(element=> element.id == id)//filtrar los perros totales por el id solicitado
             dogId.length ?
             res.status(200).json(dogId): 
