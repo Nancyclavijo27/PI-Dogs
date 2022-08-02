@@ -70,15 +70,15 @@ function rootReducer(state= initialState, action){
                             ordArr=
                             state.allDogs.sort(function(a, b){
                         
-                                if(a.weightMin < b.weightMin) return -1; // si el peso de a es menor que el de b, a va antes que b
-                                if(a.weightMin > b.weightMin) return 1; // si el peso de a es mayor que el de b, a va despues que b
+                                if(a.weightMin < b.weightMin) return -1; 
+                                if(a.weightMin > b.weightMin) return 1; 
                                 return 0;
                             })
                         } else if(action.payload === "max"){
                             ordArr=
                             state.allDogs.sort(function(a, b){
-                                if(a.weightMin > b.weightMin) return -1; // si el peso de a es mayor que el de b, a va antes que b
-                                if(a.weightMin < b.weightMin) return 1; // si el peso de a es menor que el de b, a va despues que b
+                                if(a.weightMin > b.weightMin) return -1; 
+                                if(a.weightMin < b.weightMin) return 1; 
                                 return 0;
                             })
                         }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";//importo de react los hooks que voy  a usar
 import {useDispatch, useSelector} from "react-redux";//importo los hooks de react-redux
-import { getDogs, filterCreated, ordenByName, getTemperaments, filterTemperament, ordenByWeight,} from "../actions";//acciones a usar en este componente
+import { getDogs, filterCreated, ordenByName, getTemperaments, filterTemperament, ordenByWeight,} from "../actions";
 import {Link} from "react-router-dom"
 //importo los componentes que voy a usar
 import Card from "./Card";
@@ -11,12 +11,12 @@ import "./Home.css";
 //inicia el componente
 export default function Home(){
 
-const dispatch = useDispatch() //se usa la constante para despachas las acciones
+const dispatch = useDispatch() 
 const allDogs = useSelector ((state)=>state.dogs) // trae todo lo que esta en el estado dogs
 //para el paginado
 //estado local setiado en 1 siempre inicia en 1
 const [currentPage,setCurrentPage]= useState(1)//estado con la pagina actual y un estado que setee la pagina actual
-const [dogsPerPage, setDogsPerPage] = useState(8)//cuantos perros quiero por pagina
+const [dogsPerPage, setDogsPerPage] = useState(8)
 const indexOfLastDog= currentPage * dogsPerPage//indice del ultimo perro = pagina donde estoy por la cantidad de perros por pagina =8
 const indexOfFirstDog=indexOfLastDog- dogsPerPage//indice del primer perro=indice del ultimo perro -cantidad de perros por pagina=0
 const currentDogs=allDogs.slice(indexOfFirstDog,indexOfLastDog)//trae el arreglo del estado  los perros que estan en la pagina actual
@@ -24,8 +24,8 @@ const currentDogs=allDogs.slice(indexOfFirstDog,indexOfLastDog)//trae el arreglo
 const [orden, setOrden]=useState("")//ayuda a renderizar estado local que arranca vacio
 
 //esta constante nos ayuda al renderizado
-const paginado=(pageNumber)=>{//paso el numero de la pagina
-    setCurrentPage(pageNumber)//setear la pagina en ese numero de pagina
+const paginado=(pageNumber)=>{
+    setCurrentPage(pageNumber)
 }
 
 const temperaments =useSelector((state)=>state.temperaments)
@@ -51,15 +51,15 @@ function handleClick(e){
 }
 
 function handleFilterCreate(e){
-    dispatch(filterCreated(e.target.value))//despacho la accion
+    dispatch(filterCreated(e.target.value))
 }
 
 function handleSort(e){//ordenamiento a-z
     e.preventDefault();
-    dispatch(ordenByName(e.target.value))//despacho la accion
+    dispatch(ordenByName(e.target.value))
     setCurrentPage(1);//para que inicie en la pagina 1
     setOrden(`Ordenado ${e.target.value}`)//modifica el estado local y se renderiza
-    //setName(e.target.value)
+    
 }
 
 function handleSortWeight(e) {

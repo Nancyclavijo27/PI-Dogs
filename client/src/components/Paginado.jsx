@@ -2,9 +2,9 @@ import React from "react";
 import "./Paginado.css";
 
 
-export default function paginado({dogsPerPage, allDogs, paginado}){//perros por pagina, todos los perros y const paginado
+export default function paginado({dogsPerPage, allDogs, paginado}){
     const pageNumbers=[]
-    for(let i=0;i<=Math.ceil(allDogs/dogsPerPage) -1; i++){//redondea los perros/ los perros por pagina
+    for(let i=0;i<=Math.ceil(allDogs/dogsPerPage) -1; i++){
         pageNumbers.push(i+1)//para que inicie en 1
     }
     //renderizar y me deja paginas de 8 perros
