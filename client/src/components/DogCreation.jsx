@@ -100,8 +100,7 @@ export default  function DogCreate(){
         
 
     function handlSubmit(e){
-        e.preventDefault();
-        console.log(input)
+       
         if(!input.name || !input.heightMin || !input.heightMax || !input.weightMax || !input.weightMin || !input.life_spanMax || !input.life_spanMax || !input.temperament){
             return alert('Complete los campos vacios.')
           }

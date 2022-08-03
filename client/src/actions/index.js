@@ -22,7 +22,7 @@ export function getNameDogs(name){//funcion para la barra de busqueda
                 payload: json.data//retorna lo que tenga la ruta de name
             })
         }catch(error){
-            console.log(error)//si no se cumple envia un error
+            alert("Raza no encontrada!")
         }
     }
 }

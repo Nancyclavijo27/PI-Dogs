@@ -2,7 +2,7 @@
 import React from "react";
 import {Link,  useParams  } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getDetail} from "../actions/index";
+import {getDetail, getClean } from "../actions/index";
 import { useEffect } from "react";
 
 export  default  function Detail(){
@@ -10,10 +10,15 @@ export  default  function Detail(){
     const myDog = useSelector((state) => state.detail);
     const dispatch = useDispatch();
     
+   
     useEffect(() => {
       dispatch(getDetail(id));
-      
+      return () => {
+        dispatch(getClean()); // limpia el state
+      }
     }, [dispatch, id]);
+    
+    
 
     return (   
     

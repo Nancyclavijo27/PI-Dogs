@@ -27,6 +27,7 @@ function rootReducer(state= initialState, action){
                     temperaments: action.payload
 
                 }
+                
             case "POST_DOG"://no hace nada pero debe estar en el reducer
                 return{
                     ...state,
