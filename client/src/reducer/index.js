@@ -1,7 +1,7 @@
 //luego de despachas las acciones hacemos la logica en este index de reducer
 const initialState = {        //estado inicial es un objeto
      dogs : [],  // razas de perros 
-     allDogs: [], //copia del estado que siempre tenga todos los perros
+     allDogs: [], //copia del estado  siempre tenga todos los perros
      temperaments:[],//temperamentos
      detail:[]//detail
 }

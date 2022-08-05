@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";//importo de react los hooks que voy  a usar
-import {useDispatch, useSelector} from "react-redux";//importo los hooks de react-redux
+import { useState, useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux";
 import { getDogs, filterCreated, ordenByName, getTemperaments, filterTemperament, ordenByWeight,} from "../actions";
 import {Link} from "react-router-dom"
 //importo los componentes que voy a usar
@@ -14,13 +14,13 @@ export default function Home(){
 const dispatch = useDispatch() 
 const allDogs = useSelector ((state)=>state.dogs) // trae todo lo que esta en el estado dogs
 //para el paginado
-//estado local setiado en 1 siempre inicia en 1
-const [currentPage,setCurrentPage]= useState(1)//estado con la pagina actual y un estado que setee la pagina actual
+
+const [currentPage,setCurrentPage]= useState(1)
 const [dogsPerPage, setDogsPerPage] = useState(8)
-const indexOfLastDog= currentPage * dogsPerPage//indice del ultimo perro = pagina donde estoy por la cantidad de perros por pagina =8
-const indexOfFirstDog=indexOfLastDog- dogsPerPage//indice del primer perro=indice del ultimo perro -cantidad de perros por pagina=0
-const currentDogs=allDogs.slice(indexOfFirstDog,indexOfLastDog)//trae el arreglo del estado  los perros que estan en la pagina actual
-//slise divide el arreglo en este caso el indice del primer perro y el indice del ultimo perro
+const indexOfLastDog= currentPage * dogsPerPage
+const indexOfFirstDog=indexOfLastDog- dogsPerPage
+const currentDogs=allDogs.slice(indexOfFirstDog,indexOfLastDog)
+
 const [orden, setOrden]=useState("")//ayuda a renderizar estado local que arranca vacio
 
 //esta constante nos ayuda al renderizado
@@ -120,7 +120,15 @@ return (
         return(
            <div>
             <Link to={`/home/${c.id}`}></Link>
-           <Card   key={c.id} id={c.id} name={c.name} image={c.img ? c.img:c.image} temperament={c.temperament} weightMax={c.weightMax}  weightMin={c.weightMin}/>
+           <Card   key={c.id}
+                   id={c.id}
+                   name={c.name} 
+                   image={ c.image
+                    ? c.image
+                    : "https://i0.wp.com/imagendeperros.com/wp-content/uploads/2016/01/Raza-de-Perros-Pastor-Alem%C3%A1n.jpg"} 
+                   temperament={c.temperament} 
+                   weightMax={c.weightMax}  
+                   weightMin={c.weightMin}/>
            
            </div>
     ) 

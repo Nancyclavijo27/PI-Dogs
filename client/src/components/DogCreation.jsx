@@ -88,6 +88,9 @@ export default  function DogCreate(){
     }
 
     function handleSelect(e){//logica del select
+      const { value } = e.target;
+    if (input.temperament.includes(value))
+      return alert("You've already selected that temperament")
       if (input.temperament.length === 3) {
         alert("Solo se puede ingresar tres temperamentos!");
       } else if (input.temperament.length < 3) {
@@ -273,4 +276,3 @@ export default  function DogCreate(){
         </div>
     )
  }
-
