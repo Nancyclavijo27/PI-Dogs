@@ -109,6 +109,7 @@ return (
     <Paginado
     dogsPerPage={dogsPerPage}//son las propiedades que se requiere para funcionar
     allDogs={allDogs.length}
+    currentPage={currentPage}
     paginado={paginado}
     />
     </div>

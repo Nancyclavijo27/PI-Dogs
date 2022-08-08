@@ -4,6 +4,7 @@ import {postDog, getTemperaments} from "../actions/index";
 import {useDispatch, useSelector} from "react-redux"
 import "./DogCreation.css";
 
+
 function validate(input){
     let errors = {};//objeto errores
     if (!input.name) {
@@ -30,6 +31,8 @@ function validate(input){
       } else if (parseInt(input.weightMin) > parseInt(input.weightMax)) {
         errors.weightMin =
           "El peso mínimo no puede ser mayor que el peso máximo";
+           } else if (input.weightMin < 0) {
+        errors.weightMin = "No se permiten números negativos";
       }
       if (!input.weightMax) {
         errors.weightMax = "peso maximo";
@@ -42,6 +45,8 @@ function validate(input){
       } else if (parseInt(input.life_spanMin) > parseInt(input.life_spanMax)) {
         errors.minlife_span =
           "Los años mínimos no pueden ser mayores que los años máximos";
+      } else if (input.life_spanMin < 0) {
+          errors.life_spanMin = "No se permiten números negativos";
       }
       if (!input.life_spanMax) {
         errors.life_spanMax = "años maximos";
@@ -90,7 +95,7 @@ export default  function DogCreate(){
     function handleSelect(e){//logica del select
       const { value } = e.target;
     if (input.temperament.includes(value))
-      return alert("You've already selected that temperament")
+      return alert("Ya has seleccionado ese temperamento")
       if (input.temperament.length === 3) {
         alert("Solo se puede ingresar tres temperamentos!");
       } else if (input.temperament.length < 3) {
