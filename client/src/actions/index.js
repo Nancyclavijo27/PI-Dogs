@@ -13,17 +13,17 @@ export function getDogs(){//funcion para traer todas las razas de perros
     }
 }
 
-export function getNameDogs(name){//funcion para la barra de busqueda
-    return async function(dispatch){
-        try{
-            var json =await axios.get("http://localhost:3001/dogs?name="+name);
-            return dispatch({
-                type:"GET_NAME_DOGS",
-                payload: json.data//retorna lo que tenga la ruta de name
-            })
-        }catch(error){
-            alert("Raza no encontrada!")
+
+export const getDogsForName = (name) => {
+    //obtener todos los perros que coincidan con el nombre que pasamos por parametro
+    try {
+        return {
+            type: "GET_DOGS_FOR_NAME",
+            payload: name
         }
+    } catch (error) {
+        alert("Error al obtener la descripcion")
+        
     }
 }
 
@@ -47,6 +47,13 @@ export function postDog(payload){//funcion  post DB
 export function filterCreated(payload){//funcion del filtro existencia o inv de perros
     return {
         type: "FILTER_CREATED",
+        payload
+    }
+}
+
+export function filterMayorMenor(payload){//funcion del filtro mayor de 50
+    return {
+        type: "FILTER_MAYOR_MENOR",
         payload
     }
 }
@@ -93,6 +100,7 @@ export function getClean () {
         payload: []
     }
 }
+
 
 
 

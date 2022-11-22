@@ -5,7 +5,7 @@ import {getDetail} from "../actions/index"
 import { useDispatch } from "react-redux";
 //informacion que lleva la targeta y renderiza lo que se necesirta
 
-export default function Card ({name, image, temperament, weightMin, weightMax,id}){
+export default function Card ({name, image, temperament, weightMin, weightMax,id , life_spanMin}){
     const dispatch=useDispatch
 
     return (
@@ -26,6 +26,7 @@ export default function Card ({name, image, temperament, weightMin, weightMax,id
             <div className="card-bio">
               <p>Peso: Min: {weightMin}kg - Max: {weightMax}kg</p>
               <p>Temperament: {temperament}</p>
+              <p>Vida: {life_spanMin}</p>
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@
    .cards img{
        width: 100px;
        height: 100px;
-       border-radius: 150%;
+       border-radius: 25px;
    }
 
    .img-container{
@@ -30,7 +30,7 @@
    }
 
    .info-container{
-    padding: 10px;
+    padding: 5px;
     text-align: center;
    }
    

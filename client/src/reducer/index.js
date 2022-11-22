@@ -3,11 +3,12 @@ const initialState = {        //estado inicial es un objeto
      dogs : [],  // razas de perros 
      allDogs: [], //copia del estado  siempre tenga todos los perros
      temperaments:[],//temperamentos
-     detail:[]//detail
+     detail:[],//detail
+     commets: []
 }
 
 function rootReducer(state= initialState, action){
-     
+   
     switch(action.type) {
        case  "GET_DOGS": //la logica siempre es antes del return o si no se rompe
            return{
@@ -16,11 +17,18 @@ function rootReducer(state= initialState, action){
                 allDogs:action.payload,
                  
             }
-            case "GET_NAME_DOGS":
-                return {
-                    ...state,
-                    dogs: action.payload
-                }
+            case "GET_DOGS_FOR_NAME":
+            // filtrar los perros por nombre
+            let nombres=
+            state.payload===""
+            ? state.allDogs
+            : state.allDogs.filter((dog) => dog.name.toLowerCase().includes(action.payload.toLowerCase())) // Obtengo el array de dogs filtrados
+            return{
+                ...state,
+                dogs:nombres,
+            }
+
+        
             case "GET_TEMPERAMENTS":
                 return {
                     ...state,
@@ -100,6 +108,14 @@ function rootReducer(state= initialState, action){
                               ...state,
                               dogs: temperamentsFilter
                        }
+                       case "FILTER_MAYOR_MENOR":
+                        const allDogs3 = state.allDogs
+                        const filMayoMeno =action.payload === "mayor" ? allDogs3.filter(el=> el.life_spanMin>15):allDogs3.filter(el=>!el.life_spanMin<14)
+                        return {
+                            ...state,
+                            dogs: action.payload === "All" ? state.allDogs : filMayoMeno
+        
+                        }
 
 
                      case "FILTER_CREATED":
@@ -122,6 +138,13 @@ function rootReducer(state= initialState, action){
                                         ...state,
                                         detail: action.payload
                                 };
+
+                case "SET_COMMET":
+                    return{
+                        ...state,
+                        commets: action.payload
+                    }
+               
 
 
             default:

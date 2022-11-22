@@ -1,7 +1,8 @@
 import React from "react";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { getDogs, filterCreated, ordenByName, getTemperaments, filterTemperament, ordenByWeight,} from "../actions";
+import { getDogs, filterCreated, ordenByName, getTemperaments, filterTemperament, ordenByWeight,  filterMayorMenor} from "../actions";
 import {Link} from "react-router-dom"
 //importo los componentes que voy a usar
 import Card from "./Card";
@@ -54,6 +55,13 @@ function handleFilterCreate(e){
     dispatch(filterCreated(e.target.value))
 }
 
+function handleFilterMaMe(e){
+    e.preventDefault(e);
+    dispatch(filterMayorMenor(e.target.value))
+    setCurrentPage(1);//para que inicie en la pagina 1
+    setOrden(`Ordenado ${e.target.value}`)
+}
+
 function handleSort(e){//ordenamiento a-z
     e.preventDefault();
     dispatch(ordenByName(e.target.value))
@@ -69,17 +77,20 @@ function handleSortWeight(e) {
     setOrden(`Ordenado ${e.target.value}`);
   }
 
+ 
+
 
 //renderizar
 //select para mis filtros
 //option value es una istruccion dependiendo su valor toma una accion - siempre el value debe ser igual al de la api
 return (
     <div className="home-container">
- <Link   to="/dog">Añadir nueva raza</Link>
+ <Link className="link"  to="/dog">Añadir nueva raza</Link>
  <h1>Busca y conoce a tu mejor amigo</h1>
  <button  className="btn" onClick={e=>{handleClick(e)}}>
     volver a cargar todas las razas de perros
  </button>
+ 
  <div>
         <select className="selec"  onChange={(e) => handleSortWeight(e)} >
           <option value="All">Todos </option>
@@ -98,6 +109,11 @@ return (
         <option value= "created">Creados</option>
         <option value= "api">De la api</option>
     </select>
+    <select  className="selec" onChange={e=>handleFilterMaMe(e)}>
+        <option value= "All">Todos</option>
+        <option value= "mayor">vida mayor 15</option>
+        <option value= "menor">vida menor  15</option>
+    </select>
     <select className="selec" onChange={(e)=>handleSelect(e)}>
          <option  value= "All">Temperamentos</option>
             {temperaments.map((tem)=>(
@@ -113,7 +129,7 @@ return (
     paginado={paginado}
     />
     </div>
-    <SearchBar/>
+    <SearchBar setCurrentPage={setCurrentPage}/>
 
     <div className="card-dogs">
 
@@ -129,7 +145,8 @@ return (
                     : "https://i0.wp.com/imagendeperros.com/wp-content/uploads/2016/01/Raza-de-Perros-Pastor-Alem%C3%A1n.jpg"} 
                    temperament={c.temperament} 
                    weightMax={c.weightMax}  
-                   weightMin={c.weightMin}/>
+                   weightMin={c.weightMin}
+                   life_spanMin={c.life_spanMin}/>
            
            </div>
     ) 

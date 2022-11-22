@@ -4,7 +4,7 @@ import {Link,  useParams  } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getDetail, getClean } from "../actions/index";
 import { useEffect } from "react";
-
+import "./Detail.css";
 export  default  function Detail(){
     const { id } = useParams();
     const myDog = useSelector((state) => state.detail);
@@ -24,11 +24,11 @@ export  default  function Detail(){
     
       <div> 
         <div>
-        <Link to="/home"><button>Volver</button></Link>
+        <Link to="/home"><button className="button">Volver</button></Link>
         </div>
       {myDog.length > 0 ?//pregunto tiene algo 
       <div>
-          <h1>Es:{myDog[0].name}</h1>
+          <h1>Soy :{myDog[0].name}</h1>
           <img src={myDog[0].img? myDog[0].img: myDog[0].image}  alt="" width="500px"height="300px"/>
           
           <h4>heightMin:{myDog[0].heightMin}</h4>

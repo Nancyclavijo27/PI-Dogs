@@ -47,6 +47,19 @@
   background-color:  #b3e5cc;
 }
 
+.link, a:visited {
+  background-color: #619c8e;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.hover, a:active {
+  background-color: red;
+}
+
 
 
 
