@@ -8,6 +8,8 @@ import {Link} from "react-router-dom"
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import notRaza from "../Imagenes/noPerro.jpg";
+import Footer from "../components/Footer";
 import "./Home.css";
 //inicia el componente
 export default function Home(){
@@ -23,7 +25,7 @@ const indexOfFirstDog=indexOfLastDog- dogsPerPage
 const currentDogs=allDogs.slice(indexOfFirstDog,indexOfLastDog)
 
 const [orden, setOrden]=useState("")//ayuda a renderizar estado local que arranca vacio
-
+const [charge, setCharge] = useState(false); // variable para saber si esta cargando
 //esta constante nos ayuda al renderizado
 const paginado=(pageNumber)=>{
     setCurrentPage(pageNumber)
@@ -131,29 +133,32 @@ return (
     </div>
     <SearchBar setCurrentPage={setCurrentPage}/>
 
-    <div className="card-dogs">
-
-    {currentDogs?.map((c)=>{//me trae la pagina con 8 perritos gracias al paginado
-        return(
-           <div>
-            <Link to={`/home/${c.id}`}></Link>
-           <Card   key={c.id}
-                   id={c.id}
-                   name={c.name} 
-                   image={ c.image
-                    ? c.image
-                    : "https://i0.wp.com/imagendeperros.com/wp-content/uploads/2016/01/Raza-de-Perros-Pastor-Alem%C3%A1n.jpg"} 
-                   temperament={c.temperament} 
-                   weightMax={c.weightMax}  
-                   weightMin={c.weightMin}
-                   life_spanMin={c.life_spanMin}/>
-           
-           </div>
-    ) 
-    
-    })}
-    </div>
+    <div className="cards">
+          {charge ? (
+            <div>
+              <img className="loading" src="https://i.giphy.com/media/ar8zpFnzWcSbAxjJmd/giphy.webp" alt="loading" />
+            </div>
+          ) : currentDogs.length ? (
+          currentDogs.map((dog) => (
+            <Card
+              key={dog.id}
+              id={dog.id}
+              name={dog.name}
+              image={dog.image}
+              temperament={dog.temperament}
+              weightMin={dog.weightMin}
+              weightMax={dog.weightMax}
+            />
+          ))
+        ) : (
+          <div className="noDogs">
+            <h1>No se han encontrado perros</h1>
+            <img src={notRaza} alt="not_raza" />
+          </div>
+        )}
+      </div>
  </div>
+ <Footer/>
     </div>
 )
 

@@ -4,6 +4,9 @@ const initialState = {        //estado inicial es un objeto
      allDogs: [], //copia del estado  siempre tenga todos los perros
      temperaments:[],//temperamentos
      detail:[],//detail
+     fav: [],
+     loading: true,
+     error: false,
      commets: []
 }
 
@@ -127,17 +130,43 @@ function rootReducer(state= initialState, action){
                 
                                 }
 
-                     case "GET_DETAIL":
-                                return {
-                                    ...state,
-                                    detail:action.payload
-                                }
 
-                                case "GET_CLEAN":
-                                    return {
-                                        ...state,
-                                        detail: action.payload
-                                };
+            case "GET_DETAIL":
+            // obtener la descripcion de cada raza seleccionada
+            return{
+                ...state,
+                detail: action.payload,// Obtengo el perro seleccionado
+                loading: false,
+                error: false,
+            }
+         case "ADD_FAV":
+            return {
+                ...state,
+                fav: [...state.fav, action.payload],
+            };
+        case "DELETE_FAV":
+            return {
+                ...state,
+                fav: state.fav.filter((dog) => dog.id !== action.payload.id),
+            };
+
+            case "DELETE_DOG":
+            return { ...state };
+
+            case "SET_LOADING":
+                return {
+                    ...state,
+                    loading: true,
+                };
+            
+            case "ERROR":
+                return {
+                    ...state,
+                    loading: false,
+                    error: !state.error,
+                };
+
+
 
                 case "SET_COMMET":
                     return{

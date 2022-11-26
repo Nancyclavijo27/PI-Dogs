@@ -90,9 +90,20 @@ export function getDetail(id){//funcion detallee
         }
         catch(error) {
             console.log(error)
+            
         }
     }
 }
+
+
+export const addFav = (payload) => {
+    return { type: "ADD_FAV", payload };
+};
+
+export const deleteFav = (id) => {
+    return { type: "DELETE_FAV", payload: id };
+};
+
 
 export function getClean () {
     return{
@@ -100,6 +111,29 @@ export function getClean () {
         payload: []
     }
 }
+
+export const deleteDog = (id) => {
+    return async function (dispatch) {
+        try {
+            await axios.delete(`/deleted/${id}`);
+            return dispatch({
+                type: "DELETE_DOG",
+        });
+        } catch (e) {
+            return dispatch({
+                type: "ERROR",
+        });
+        }
+    };
+};
+
+export function setLoading ()  {
+    return { type: "SET_LOADING" };
+};
+export function setError ()  {
+    return { type: "ERROR" };
+};
+
 
 
 
