@@ -88,10 +88,13 @@ function handleSortWeight(e) {
 return (
     <div className="home-container">
  <Link className="link"  to="/dog">Añadir nueva raza</Link>
+
  <h1>Busca y conoce a tu mejor amigo</h1>
  <button  className="btn" onClick={e=>{handleClick(e)}}>
     volver a cargar todas las razas de perros
  </button>
+
+ <Link className="link"  to="/Admin">Admin</Link>
  
  <div>
         <select className="selec"  onChange={(e) => handleSortWeight(e)} >
